@@ -3,18 +3,21 @@
 .calendar-main-container {
     display: flex;
     font-family: 'Roboto';
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.319);
     padding: 5px 5px;
     border-radius: 3px;
+    min-width: 400px;
+    min-height: 380px;
 }
 
 .calendar-header {
     display: flex;
     justify-content: center;
     width: 100%;
+    margin: 10px 0px
 }
 
 .calendar-controls {
@@ -28,12 +31,17 @@
     display: flex;
     width: 50%;
     justify-content: center;
+    align-items: center;
 }
 
 .calendar-header-label>div {
     padding: 0px 5px;
+    text-align: center;
 }
+.calendar-month, .calendar-year{
+    width: 50%;
 
+}
 .calendar-prev-button,
 .calendar-next-button {
     display: flex;
@@ -43,6 +51,13 @@
     width: 40px;
     height: 40px;
     cursor: pointer;
+}
+.calendar-prev-button{
+    color: white;
+    cursor: default;
+}
+.calendar-prev-button-active{
+    color: black;
 }
 
 .calendar-body {
@@ -64,6 +79,9 @@
     align-items: center;
     width: 40px;
     height: 40px;
+}
+.calendar-day-container:hover{
+    background-color: rgba(173, 216, 230, 0.404);
 }
 
 .calendar-body-weekday {
