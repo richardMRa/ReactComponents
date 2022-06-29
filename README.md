@@ -1,7 +1,7 @@
 ## Components list:
 
 - **Carousel** 
-- 
+
   Simple responsive carousel, includes thumbnails slider <br />
   
   Future implementations:
