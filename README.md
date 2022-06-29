@@ -4,8 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Carousel 
 
-  Simple responsive carousel, includes thumbnails slider
-  Future implementations: 
+  Simple responsive carousel, includes thumbnails slider <br />
+  Future implementations: <br />
       - Drag event, thumbnails slider animations.  
 
 ## Calendar (Currently in development)
