@@ -9,4 +9,4 @@
   - Thumbnails slider animations  
 
 - **Calendar (Currently in development)**
-  Simple responsive calendar
+  - Simple responsive calendar
