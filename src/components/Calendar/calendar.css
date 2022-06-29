@@ -1,0 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+.calendar-header{
+    display: flex;
+    justify-content: center;
+}
+
+.calendar-main-container{
+    font-family: 'Roboto';
+}
+.calendar-controls{
+    display: flex;
+    align-items: center;
+}
+.calendar-header-label{
+    padding: 0px 10px;
+    display: flex;
+}
+.calendar-header-label > div{
+    padding: 0px 5px;
+} 
+
+.calendar-prev-button, .calendar-next-button{
+    font-size: 35px;
+}
+
+.calendar-days-container{
+    width: 300px;
+    height: 300px;
+}
