@@ -1,6 +1,6 @@
 # Components list:
 
--## Carousel 
+- **Carousel** 
 
   Simple responsive carousel, includes thumbnails slider <br />
   
@@ -8,5 +8,5 @@
   - Drag event
   - Thumbnails slider animations  
 
-## Calendar (Currently in development)
+- **Calendar (Currently in development)**
   Simple responsive calendar
