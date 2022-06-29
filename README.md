@@ -5,7 +5,8 @@
   Simple responsive carousel, includes thumbnails slider <br />
   
   Future implementations:
-  - Drag event, thumbnails slider animations.  
+  - Drag event
+  - Thumbnails slider animations  
 
 ## Calendar (Currently in development)
   Simple responsive calendar
