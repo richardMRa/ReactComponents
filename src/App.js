@@ -10,11 +10,9 @@ function App() {
 
   return (
     <div className="App">
-
-      <div className='center'>
-        <h1 className="title">Developing Calendar</h1>
+      <h1 className="title">Developing Calendar</h1>
+      <div className='center'>  
         <Calendar />
-
       </div>
     </div>
   );
