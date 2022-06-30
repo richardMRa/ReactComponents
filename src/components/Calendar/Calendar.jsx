@@ -90,7 +90,10 @@ const Calendar = (props) => {
         setDate(new Date(date.getFullYear(), e.target.attributes.monthindex.value, '1'))
 
     }
-
+    const handleDayClick = (e) => {
+        setSelectCurrent(e.target.innerHTML)
+    }
+    
     useEffect(() => {
         exitEventRef.current.addEventListener('click', () => {
             if (displaySelect.active) {
@@ -114,10 +117,10 @@ const Calendar = (props) => {
         }
         setState({
             firstDay: new Date(date.getFullYear(), date.getMonth(), '1').getDay(),
-            selectedDate: new Date(date.getFullYear(), date.getMonth(), date.getDay()),
+            selectedDate: new Date(date.getFullYear(), date.getMonth(), selectCurrent),
             selectedYear: date.getFullYear(),
             selectedMonth: date.toLocaleDateString(monthDate.lang, monthDate.options),
-            selectedDay: date.getDay(),
+            selectedDay: selectCurrent,
 
         })
 
@@ -200,8 +203,8 @@ const Calendar = (props) => {
                             { /* Day tiles*/
                                 Array(arrMonth[state.selectedMonth]).fill().map((_, index) => {
                                     return (
-                                        <div className="calendar-day-container">
-                                            <div key={'calendar-day-key' + index}>{index + 1}</div>
+                                        <div className={`calendar-day-container ${index + 1 == selectCurrent ? 'day-active' : ''}`} onClick={handleDayClick}>
+                                            {index + 1}
                                         </div>
                                     )
 
