@@ -17,7 +17,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    margin: 10px 0px
+    margin: 40px 0px 10px 0px
 }
 
 .calendar-controls {
@@ -32,16 +32,67 @@
     width: 50%;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    border: 1px solid rgba(255, 0, 0, 0.233);
+    border-radius: 4px;
 }
 
 .calendar-header-label>div {
     padding: 0px 5px;
     text-align: center;
 }
-.calendar-month, .calendar-year{
+
+.calendar-month,
+.calendar-year {
+    display: flex;
+    justify-content: center;
     width: 50%;
+    height: 100%;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: 400;
+   
+}
+.calendar-month{
+    position: relative;
+    border-right: 1px solid rgba(255, 0, 0, 0.233);
+    cursor: pointer;
+}
+.calendar-month-select {
+    position: absolute;
+    top: 100%;
+    left: 1px;
+    display: none;
+    flex-direction: column;
+    background-color: rgb(246, 230, 230);
+    width: 200px;
+    height: 230px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.319);
+    border-radius: 5px;
+    overflow: auto;
+    scrollbar-width: thin;
+    margin: 2px 0px
+    
 
 }
+.calendar-options-active{
+    background-color: rgba(245, 140, 187, 0.209);
+}
+.calendar-month-select-active {
+    display: flex;
+}
+
+.month-select-option {
+    padding: 2px 0px;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.month-select-option:hover {
+    background-color: rgba(245, 140, 187, 0.209);
+    border-radius: 2px;
+}
+
 .calendar-prev-button,
 .calendar-next-button {
     display: flex;
@@ -52,11 +103,13 @@
     height: 40px;
     cursor: pointer;
 }
-.calendar-prev-button{
+
+.calendar-prev-button {
     color: white;
     cursor: default;
 }
-.calendar-prev-button-active{
+
+.calendar-prev-button-active {
     color: black;
 }
 
@@ -69,7 +122,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 280px;
-    
+
 }
 
 .calendar-body-weekday,
@@ -80,14 +133,17 @@
     width: 40px;
     height: 40px;
 }
-.calendar-day-container:hover{
+
+.calendar-day-container:hover {
     background-color: rgba(173, 216, 230, 0.404);
 }
 
 .calendar-body-weekday {
-    color: rgba(0, 0, 255, 0.568);
+    color: rgb(245, 143, 143);
+    font-weight: bold;
 }
 
 .calendar-day-container {
-   color: rgba(0, 0, 0, 0.776);
+    color: rgba(0, 0, 0, 0.776);
+    font-weight: bold;
 }

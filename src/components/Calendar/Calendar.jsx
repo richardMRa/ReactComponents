@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import './calendar.css'
 
-const Calendar = () => {
+const Calendar = (props) => {
     const monthDate = {
         lang: 'en-US',
         options: {
@@ -34,9 +34,14 @@ const Calendar = () => {
         "Saturday"
     ]
     const [today, setToday] = useState(new Date())
+    const [isFirstRender, setFirstRender] = useState(true)
     const [date, setDate] = useState(new Date())
     const [state, setState] = useState(null)
-
+    const [displaySelect, setDisplaySelect] = useState({ class: '', active: false })
+    const [optionsRefs, setOptionsRefs] = useState(null)
+    const [selectCurrent, setSelectCurrent] = useState('')
+    const selectRef = useRef(null)
+    const exitEventRef = props.exitEventRef
     const ifDatesAreEqual = () => {
         if (state) {
             if (today.toLocaleDateString('default', {
@@ -52,24 +57,61 @@ const Calendar = () => {
         return false
     }
 
-    const handleNextMonth = () => {   
+    const handleNextMonth = () => {
+        if (displaySelect.class !== '') {
+            setDisplaySelect({ class: '', active: false })
+        }
         setDate(new Date(date.getFullYear(), date.getMonth() + 1, '1'))
+
     }
 
     const handlePrevMonth = () => {
+        if (displaySelect.class !== '') {
+            setDisplaySelect({ class: '', active: false })
+        }
         if (ifDatesAreEqual()) {
             return
         }
         setDate(new Date(date.getFullYear(), date.getMonth() - 1, '1'))
-    }
-
-    const handleMonthSelect = () =>{
 
     }
-    
+
+    const handleMonthSelect = () => {
+        if (displaySelect.class === '') {
+            setDisplaySelect({ class: 'calendar-month-select-active', active: true })
+            return
+        }
+        setDisplaySelect({ class: '', active: false })
+
+    }
+    const handleOptions = (e) => {
+        console.log(document.activeElement)
+        setSelectCurrent(e.target.innerHTML)
+        setDate(new Date(date.getFullYear(), e.target.attributes.monthindex.value, '1'))
+
+    }
+
     useEffect(() => {
-    }, [state])
+        exitEventRef.current.addEventListener('click', () => {
+            if (displaySelect.active) {
+
+                if (document.activeElement !== selectRef.current) {
+                    setDisplaySelect({ class: '', active: false })
+                }
+            }
+        })
+
+
+    }, [state, displaySelect, selectRef])
     useEffect(() => {
+
+
+        if (isFirstRender) {
+            setOptionsRefs(Array(12).fill().map((_, i) => {
+                return React.createRef();
+            }))
+            setFirstRender(false)
+        }
         setState({
             firstDay: new Date(date.getFullYear(), date.getMonth(), '1').getDay(),
             selectedDate: new Date(date.getFullYear(), date.getMonth(), date.getDay()),
@@ -101,7 +143,35 @@ const Calendar = () => {
                                 <i className="fa-solid fa-chevron-left"></i>
                             </div>
                             <div className="calendar-header-label">
-                                <div className="calendar-month" onClick={handleMonthSelect}>{state.selectedMonth}</div>
+                                <div className="calendar-month" onClick={handleMonthSelect}>{state.selectedMonth}
+                                    <div className={`calendar-month-select ${displaySelect.class}`} tabIndex={0} ref={selectRef} >
+                                        {Array(12).fill().map((_, i) => {
+                                            if (date.getFullYear() === today.getFullYear() ){
+                                                if (i >= today.getMonth()){
+                                                    return (
+                                                        <div className={`month-select-option ${optionsRefs[i].current && optionsRefs[i].current.innerHTML === state.selectedMonth ? 'calendar-options-active' : ''}`}
+                                                            ref={ele => optionsRefs[i].current = ele}
+                                                            onClick={handleOptions}
+                                                            monthindex={i}
+                                                        >{(new Date(date.getFullYear(), i, '1')).toLocaleDateString(monthDate.lang, monthDate.options)}</div>
+                                                    )
+                                                }
+                                                
+                                            } else {
+                                                return (
+                                                    <div className={`month-select-option ${optionsRefs[i].current && optionsRefs[i].current.innerHTML === state.selectedMonth ? 'calendar-options-active' : ''}`}
+                                                        ref={ele => optionsRefs[i].current = ele}
+                                                        onClick={handleOptions}
+                                                        monthindex={i}
+                                                    >{(new Date(date.getFullYear(), i, '1')).toLocaleDateString(monthDate.lang, monthDate.options)}</div>
+                                                )
+                                            }
+
+                                                
+                                        })}
+                                    </div>
+                                </div>
+
                                 <div className="calendar-year">{state.selectedYear}</div>
                             </div>
                             <div className="calendar-next-button" onClick={handleNextMonth}>

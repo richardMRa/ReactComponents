@@ -3,7 +3,7 @@ import './styles/App.css';
 import Calendar from './components/Calendar/Calendar';
 import Carousel from './components/Carousel/Carousel'
 function App() {
-
+  const containerRef = useRef(null)
   useEffect(() => {
 
   })
@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <h1 className="title">Developing Calendar</h1>
-      <div className='center'>  
-        <Calendar />
+      <div className='center' ref={containerRef}>  
+        <Calendar exitEventRef={containerRef} />
       </div>
     </div>
   );
