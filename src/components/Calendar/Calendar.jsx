@@ -97,14 +97,11 @@ const Calendar = (props) => {
     useEffect(() => {
         exitEventRef.current.addEventListener('click', () => {
             if (displaySelect.active) {
-
                 if (document.activeElement !== selectRef.current) {
                     setDisplaySelect({ class: '', active: false })
                 }
             }
         })
-
-
     }, [state, displaySelect, selectRef])
     useEffect(() => {
 
